@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Brewing Equipment - Bean Boutique</title>
+    
+    <!-- Include Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section (Same as before) -->
+    <header>
+        <div class="logo">
+            <h1>Bean Boutique</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="coffee-selection.html">Coffee Selection</a></li>
+                <li><a href="brewing-equipment.html">Brewing Equipment</a></li>
+                <li><a href="events-workshops.html">Events & Workshops</a></li>
+                <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                <li><a href="special-offers.html">Special Offers</a></li>
+            </ul>
+        </nav>
+        <div id="cart-count">Cart: <span id="cart-number">0</span> items
+            <a href="shopping-cart.html" style="color: white; text-decoration: none; margin-left: 10px;">Go to Cart</a>
+        </div>
+    </header>
+
+    <!-- Brewing Equipment Section -->
+    <section class="brewing-equipment">
+        <h2>Brewing Equipment</h2>
+        <p>Explore our range of premium brewing equipment that will help you make the perfect cup of coffee every time.</p>
+
+        <!-- Equipment Items in Rows -->
+        <div class="equipment-gallery">
+            <!-- Equipment Item 1 -->
+            <div class="equipment-item">
+                <img src="images/brewer1.png" alt="Coffee Brewer 1">
+                <h3>Breville Precision Brewer BDC400BSS stainless steel</h3>
+                <p class="description">This high-quality coffee brewer offers precision brewing for a rich and aromatic cup. Perfect for home baristas.</p>
+                <p class="price">$299.99</p>
+                <div class="product-action">
+                    <div class="quantity-container">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity" value="0" min="0">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Equipment Item 2 -->
+            <div class="equipment-item">
+                <img src="images/brewer2.jpg" alt="Coffee Brewer 2">
+                <h3>Technivorm Moccamaster 79212 KBTS Coffee Brewer</h3>
+                <p class="description">A durable, user-friendly coffee brewer designed for simplicity and speed, ideal for busy mornings.</p>
+                <p class="price">$329.99</p>
+                <div class="product-action">
+                    <div class="quantity-container">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity" value="0" min="0">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Equipment Item 3 -->
+            <div class="equipment-item">
+                <img src="images/brewer3.png" alt="French Press">
+                <h3>WMF 3329085099 Coffee Brewer</h3>
+                <p class="description">This is a manual machine that allows you to make a full-bodied, rich coffee with ease.</p>
+                <p class="price">$79.99</p>
+                <div class="product-action">
+                    <div class="quantity-container">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity" value="0" min="0">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Equipment Item 4 -->
+            <div class="equipment-item">
+                <img src="images/brewer4.jpg" alt="Coffee Brewer 4">
+                <h3>Cuisinart Single Serve Coffee Maker + Coffee Grinder</h3>
+                <p class="description">Make the perfect cup for one with the Grind & Brew Single-Serve Brewer by Cuisinart®. Designed to brew the most flavorful coffee.</p>
+                <p class="price">$139.99</p>
+                <div class="product-action">
+                    <div class="quantity-container">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity" value="0" min="0">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Equipment Item 5 -->
+            <div class="equipment-item">
+                <img src="images/brewer5.jpeg" alt="Coffee Brewer 5">
+                <h3>Electric Coffee Grinder Coffee Bean Powder Grinding Machine 8 level adjustment</h3>
+                <p class="description">Our grinder is equipped with a low noise copper motor that operates at lower decibels, so you can enjoy your morning coffee without waking the whole neighborhood.</p>
+                
+                <p class="price">$89.99</p>
+                <div class="product-action">
+                    <div class="quantity-container">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity" value="0" min="0">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section (Same as before) -->
+    <footer>
+        <p>Bean Boutique - Quality Coffee. Freshly Brewed. &copy; 2025</p>
+    </footer>
+
+   <!-- Slick Carousel JS -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+   <script>
+       var cartItemCount = 0; // Global cart count
+       var cartItemCount = localStorage.getItem('cartItemCount') ? parseInt(localStorage.getItem('cartItemCount')) : 0;
+        var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+       $(document).ready(function(){
+           // Slick carousel setup
+           $('#cart-number').text(cartItemCount);
+           $('.product-catalogue').slick({
+               infinite: true,
+               slidesToShow: 4,
+               slidesToScroll: 1,
+               autoplay: true,
+               autoplaySpeed: 3000,
+               dots: true,
+               responsive: [
+                   {
+                       breakpoint: 768,
+                       settings: {
+                           slidesToShow: 2,
+                           slidesToScroll: 1
+                       }
+                   },
+                   {
+                       breakpoint: 480,
+                       settings: {
+                           slidesToShow: 1,
+                           slidesToScroll: 1
+                       }
+                   }
+               ]
+           });
+
+           // Search filter functionality
+           $('#search-bar').on('input', function() {
+               var searchText = $(this).val().toLowerCase();
+               $('.image-item').each(function() {
+                   var title = $(this).find('.image-title').text().toLowerCase();
+                   if (title.indexOf(searchText) !== -1) {
+                       $(this).show();
+                   } else {
+                       $(this).hide();
+                   }
+               });
+           });
+
+           // Quantity button functionality
+           $('.quantity-btn').click(function() {
+               var $input = $(this).siblings('.quantity');
+               var value = parseInt($input.val());
+
+               // If minus button clicked, decrement
+               if ($(this).hasClass('minus')) {
+                   if (value > 0) {
+                       value--;
+                   }
+               }
+               // If plus button clicked, increment
+               if ($(this).hasClass('plus')) {
+                   value++;
+               }
+
+               // Update the input value
+               $input.val(value);
+           });
+
+           // Add to Cart button functionality
+$('.add-to-cart-btn').click(function() {
+    var $parent = $(this).closest('.equipment-item');
+    var quantity = $parent.find('.quantity').val();
+    var productTitle = $parent.find('h3').text();
+    var productPrice = $parent.find('.price').text().replace('$', '');
+    var productImage = $parent.find('img').attr('src'); // Get the image source
+
+    if (quantity > 0) {
+        var item = {
+            title: productTitle,
+            price: productPrice,
+            quantity: parseInt(quantity),
+            image: productImage // Include the image source
+        };
+
+        // Add item to cartItems array
+        cartItems.push(item);
+
+        // Save to localStorage
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+        cartItemCount += parseInt(quantity);
+        // Save cart item count to localStorage
+        localStorage.setItem('cartItemCount', cartItemCount);
+        $('#cart-number').text(cartItemCount);
+
+        alert("Item added to cart!");
+    } else {
+        alert("Please select a quantity.");
+    }
+});
+
+       });
+   </script>
+
+</body>
+</html>

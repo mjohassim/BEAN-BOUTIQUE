@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coffee Selection - Unique Blends</title>
+    
+    <!-- Include Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Bean Boutique</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="coffee-selection.html">Coffee Selection</a></li>
+                <li><a href="brewing-equipment.html">Brewing Equipment</a></li>
+                <li><a href="events-workshops.html">Events & Workshops</a></li>
+                <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                <li><a href="special-offers.html">Special Offers</a></li>
+            </ul>
+        </nav>
+        <div id="cart-count">Cart: <span id="cart-number">0</span> items
+            <a href="shopping-cart.html" style="color: white; text-decoration: none; margin-left: 10px;">Go to Cart</a>
+        </div>
+    </header>
+
+    <!-- Coffee Selection Section -->
+    <section class="coffee-selection">
+        <h2>Our Unique Coffee Blends</h2>
+
+        <div class="product-catalogue">
+            <!-- Product Item 1 -->
+            <div class="image-item">
+                <img src="images/coffee1.jpg" alt="Premium Coffee Blend 1">
+                <p class="image-title">Premium Coffee Blend 1</p>
+                <p class="price">$15.99</p>
+                <div class="product-action">
+                    <div class="quantity-container">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity" value="0" min="0">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product Item 2 -->
+            <div class="image-item">
+                <img src="images/coffee2.jpg" alt="Coffee Blend 2">
+                <p class="image-title">Coffee Blend 2</p>
+                <p class="price">$12.99</p>
+                <div class="product-action">
+                    <div class="quantity-container">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity" value="0" min="0">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product Item 3 -->
+            <div class="image-item">
+                <img src="images/coffee3.jpg" alt="Coffee Blend 3">
+                <p class="image-title">Coffee Blend 3</p>
+                <p class="price">$18.99</p>
+                <div class="product-action">
+                    <div class="quantity-container">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity" value="0" min="0">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product Item 4 -->
+            <div class="image-item">
+                <img src="images/coffee4.jpg" alt="Special Coffee Blend">
+                <p class="image-title">Special Coffee Blend</p>
+                <p class="price">$20.99</p>
+                <div class="product-action">
+                    <div class="quantity-container">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" class="quantity" value="0" min="0">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>Bean Boutique - Quality Coffee. Freshly Brewed. &copy; 2025</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var cartItemCount = localStorage.getItem('cartItemCount') ? parseInt(localStorage.getItem('cartItemCount')) : 0;
+        var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        $(document).ready(function() {
+            $('#cart-number').text(cartItemCount);
+
+            // Quantity button functionality
+            $('.quantity-btn').click(function() {
+                var $input = $(this).siblings('.quantity');
+                var value = parseInt($input.val());
+
+                if ($(this).hasClass('minus')) {
+                    if (value > 0) {
+                        value--;
+                    }
+                }
+                if ($(this).hasClass('plus')) {
+                    value++;
+                }
+
+                $input.val(value);
+            });
+
+            // Add to Cart button functionality
+            $('.add-to-cart-btn').click(function() {
+                var $parent = $(this).closest('.image-item');
+                var quantity = $parent.find('.quantity').val();
+                var productTitle = $parent.find('.image-title').text();
+                var productPrice = $parent.find('.price').text().replace('$', '');
+                var productImage = $parent.find('img').attr('src'); 
+
+                if (quantity > 0) {
+                    var item = {
+                        title: productTitle,
+                        price: productPrice,
+                        quantity: parseInt(quantity),
+                        image: productImage
+                    };
+
+                    // Add item to cartItems array
+                    cartItems.push(item);
+
+                    // Save to localStorage
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+                    cartItemCount += parseInt(quantity);
+                    localStorage.setItem('cartItemCount', cartItemCount);
+                    $('#cart-number').text(cartItemCount);
+
+                    alert("Item added to cart!");
+                } else {
+                    alert("Please select a quantity.");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

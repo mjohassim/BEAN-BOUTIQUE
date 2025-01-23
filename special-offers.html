@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Special Offers & Subscriptions - Bean Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom Style for Non-Scrolling Offers and Subscription Plans */
+        .offers-container, .subscription-plans-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            width: 100%;
+            margin: 0 auto;
+            justify-content: space-between; /* Align items evenly */
+            flex-wrap: wrap; /* Allow wrapping of items if needed */
+        }
+
+        .offer, .subscription-plan {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .offer img, .subscription-plan img {
+            width: 200;
+            height: 200;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .offer h3, .subscription-plan h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .offer p, .subscription-plan p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .offer button, .subscription-plan button {
+            background-color: #3b8d99;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .offer button:hover, .subscription-plan button:hover {
+            background-color: #2a6f77;
+        }
+
+        /* Space After Subscription Form */
+        .subscription-form-spacing {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Bean Boutique</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="coffee-selection.html">Coffee Selection</a></li>
+                <li><a href="brewing-equipment.html">Brewing Equipment</a></li>
+                <li><a href="events-workshops.html">Events & Workshops</a></li>
+                <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                <li><a href="special-offers.html">Special Offers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Special Offers Section -->
+    <section class="special-offers">
+        <h2>Special Offers</h2>
+
+        <!-- Container for Offers (Non-Scrolling) -->
+        <div class="offers-container">
+            <div class="offer">
+                <img src="images/offer1.jpg" width="200" 
+                height="250" alt="50% Off on First Order">
+                <h3>50% Off on First Order</h3>
+                <p>Sign up for our newsletter and get 50% off your first coffee order! Don't miss out!</p>
+                <button class="btn-offer">Claim Offer</button>
+            </div>
+
+            <div class="offer">
+                <img src="images/offer2.jpg" alt="Buy 1 Get 1 Free">
+                <h3>Buy 1 Get 1 Free</h3>
+                <p>Purchase any coffee blend and get another one free. Limited time offer!</p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
+                <button class="btn-offer">Claim Offer</button>
+            </div>
+
+            <div class="offer">
+                <img src="images/offer33.jpg" alt="Free Shipping on Orders Over $50">
+                <h3>Free Shipping on Orders Over $50</h3>
+                <p>Get free shipping when you spend $50 or more on your order. Hurry, shop now!</p>
+                <button class="btn-offer">Claim Offer</button>
+            </div>
+
+            <div class="offer">
+                <img src="images/offer4.jpg" alt="Seasonal Blend Discount">
+                <h3>Seasonal Blend Discount</h3>
+                <p>Enjoy our special seasonal coffee blend at a 20% discount! Limited time offer.</p>
+                <button class="btn-offer">Claim Offer</button>
+            </div>
+        </div>
+
+        <h2>Subscription Plans</h2>
+        <p>Get regular deliveries of your favorite coffee blends at discounted rates. Choose a subscription plan that fits your needs!</p>
+
+        <!-- Container for Subscription Plans (Non-Scrolling) -->
+        <div class="subscription-plans-container">
+            <div class="subscription-plan">
+                <img src="images/subscription1.png" alt="Basic Plan">
+                <h3>Basic Plan</h3>
+                <p>Receive 1 coffee blend per month.</p>
+                <p><strong>$19.99/month</strong></p>
+                <button class="btn-subscribe" data-plan="Basic">Subscribe</button>
+            </div>
+
+            <div class="subscription-plan">
+                <img src="images/subscription2.jpg" alt="Premium Plan">
+                <h3>Premium Plan</h3>
+                <p>Receive 3 coffee blends per month + a free mug!</p>
+                <p><strong>$49.99/month</strong></p>
+                <button class="btn-subscribe" data-plan="Premium">Subscribe</button>
+            </div>
+
+            <div class="subscription-plan">
+                <img src="images/subscription3.jpg" alt="Deluxe Plan">
+                <h3>Deluxe Plan</h3>
+                <p>Receive 5 coffee blends per month + a free mug + access to exclusive blends!</p>
+                <p><strong>$79.99/month</strong></p>
+                <button class="btn-subscribe" data-plan="Deluxe">Subscribe</button>
+            </div>
+        </div>
+
+        <h3>Subscription Form</h3>
+        <!-- Subscription Form -->
+        <form id="subscription-form" style="display:none;">
+            <label for="sub-name">Full Name</label>
+            <input type="text" id="sub-name" placeholder="Full Name" required>
+
+            <label for="sub-email">Email Address</label>
+            <input type="email" id="sub-email" placeholder="Email Address" required>
+
+            <label for="sub-plan">Select Subscription Plan</label>
+            <select id="sub-plan" required>
+                <option value="Basic">Basic Plan</option>
+                <option value="Premium">Premium Plan</option>
+                <option value="Deluxe">Deluxe Plan</option>
+            </select>
+
+            <button type="submit" class="btn-submit-subscription">Submit Subscription</button>
+        </form>
+
+        <div id="confirmation-message" class="confirmation-message" style="display: none;">
+            <p>Your subscription has been successfully submitted. We will send you an email confirmation shortly!</p>
+        </div>
+
+        <!-- Added space after the subscription form -->
+        <div class="subscription-form-spacing"></div>
+    </section>
+
+    <div class="footer-spacing"></div>
+
+    <footer>
+        <p>Bean Boutique - Quality Coffee. Freshly Brewed. &copy; 2025</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle offer claim button click
+            $('.btn-offer').click(function() {
+                alert("Offer claimed! Check your email for more details.");
+            });
+
+            // Handle subscription button click
+            $('.btn-subscribe').click(function() {
+                var plan = $(this).data('plan');
+                $('#subscription-form').show();
+                $('#subscription-form').attr('data-plan', plan);
+            });
+
+            // Handle subscription form submission
+            $('#subscription-form').submit(function(e) {
+                e.preventDefault();
+
+                var fullName = $('#sub-name').val();
+                var email = $('#sub-email').val();
+                var plan = $('#sub-plan').val();
+
+                // Simulate sending the data (for now it's logged)
+                console.log("Subscription Details:");
+                console.log("Name: " + fullName);
+                console.log("Email: " + email);
+                console.log("Plan: " + plan);
+
+                // Show confirmation message and hide the form
+                $('#confirmation-message').show();
+                $('#subscription-form').hide();
+
+                // Clear the form inputs
+                $('#sub-name').val('');
+                $('#sub-email').val('');
+            });
+        });
+    </script>
+
+</body>
+</html>
+    

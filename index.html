@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bean Boutique - Home</title>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Bean Boutique</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="coffee-selection.html">Coffee Selection</a></li>
+                <li><a href="brewing-equipment.html">Brewing Equipment</a></li>
+                <li><a href="events-workshops.html">Events & Workshops</a></li>
+                <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                <li><a href="special-offers.html">Special Offers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- On-page Animated Text Search -->
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search..." onkeyup="searchContent()">
+        <div class="search-results" id="search-results"></div>
+    </div>
+
+    <!-- Horizontal Scrolling Featured Products -->
+    <section class="featured-products">
+        <h3>Featured Products</h3>
+        <div class="scrolling-gallery">
+            <div class="image-item">
+                <img src="images/coffee-image1.jpg" alt="Premium Coffee Blend 1" title="Premium Coffee Blend 1">
+                <p class="image-title">Premium Coffee Blend 1</p>
+            </div>
+            <div class="image-item">
+                <img src="images/coffee1.jpg" alt="Coffee Blend 2" title="Coffee Blend 2">
+                <p class="image-title">Coffee Blend 2</p>
+            </div>
+            <div class="image-item">
+                <img src="images/coffee2.jpg" alt="Brewing Equipment" title="Brewing Equipment">
+                <p class="image-title">Brewing Equipment</p>
+            </div>
+            <div class="image-item">
+                <img src="images/coffee-image3.jpg" alt="Special Coffee Blend" title="Special Coffee Blend">
+                <p class="image-title">Special Coffee Blend</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>Bean Boutique - Quality Coffee. Freshly Brewed. &copy; 2025</p>
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="https://www.facebook.com/yourshop" target="_blank" class="fab fa-facebook"></a>
+            <a href="https://www.instagram.com/yourshop" target="_blank" class="fab fa-instagram"></a>
+            <a href="https://twitter.com/yourshop" target="_blank" class="fab fa-twitter"></a>
+        </div>
+    </footer>
+
+    <!-- Slick Carousel JS -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.scrolling-gallery').slick({
+                infinite: true,           // Infinite loop scroll
+                slidesToShow: 3,          // Number of images to show at once
+                slidesToScroll: 1,        // Number of images to scroll at a time
+                autoplay: true,           // Automatically scroll images
+                autoplaySpeed: 2000,      // Delay between image scrolls (in milliseconds)
+                arrows: true,             // Enable arrows for navigation
+                dots: true,               // Enable dots for navigation
+                responsive: [
+                    {
+                        breakpoint: 768,   // For mobile view
+                        settings: {
+                            slidesToShow: 1,    // Show one image at a time on smaller screens
+                            slidesToScroll: 1,
+                            dots: true
+                        }
+                    }
+                ]
+            });
+        });
+
+        // Search function for on-page search
+        function searchContent() {
+            var query = document.getElementById('search-bar').value.toLowerCase();
+            var items = document.querySelectorAll('.image-item');
+            var resultsDiv = document.getElementById('search-results');
+            var found = false;
+
+            items.forEach(function(item) {
+                var title = item.querySelector('.image-title').textContent.toLowerCase();
+                var resultElement = item.querySelector('.image-title');
+
+                if (title.includes(query)) {
+                    item.style.display = 'flex'; // Show item if it matches search query
+                    resultElement.classList.add('highlight'); // Highlight search result
+                    found = true;
+                } else {
+                    item.style.display = 'none'; // Hide item if it doesn't match search query
+                    resultElement.classList.remove('highlight');
+                }
+            });
+
+            // Display search message if no results are found
+            if (!found) {
+                resultsDiv.textContent = "No results found.";
+            } else {
+                resultsDiv.textContent = ""; // Clear search message when results are found
+            }
+        }
+    </script>
+
+</body>
+</html>
